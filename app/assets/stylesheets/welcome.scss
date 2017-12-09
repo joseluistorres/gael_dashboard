@@ -7,7 +7,7 @@
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  width: 320px;
+  width: 348px;
   height: 336px;
   font-size: 15em;
   text-align: center;
@@ -48,4 +48,12 @@ span.failed {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+.date-container {
+  text-align: right;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 2em;
 }
