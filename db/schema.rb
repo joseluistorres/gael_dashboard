@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171209210614) do
+ActiveRecord::Schema.define(version: 20171210060104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20171209210614) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "time_unit_id"
+    t.integer "value"
+    t.boolean "passed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_grades_on_category_id"
+    t.index ["time_unit_id"], name: "index_grades_on_time_unit_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -30,6 +41,26 @@ ActiveRecord::Schema.define(version: 20171209210614) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "time_blocks", force: :cascade do |t|
+    t.string "date_range"
+    t.integer "total", null: false
+    t.datetime "started_at", null: false
+    t.datetime "ended_at", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_time_blocks_on_user_id"
+  end
+
+  create_table "time_units", force: :cascade do |t|
+    t.string "name"
+    t.integer "grade_total"
+    t.bigint "time_block_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["time_block_id"], name: "index_time_units_on_time_block_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,4 +100,8 @@ ActiveRecord::Schema.define(version: 20171209210614) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "grades", "categories"
+  add_foreign_key "grades", "time_units"
+  add_foreign_key "time_blocks", "users"
+  add_foreign_key "time_units", "time_blocks"
 end
