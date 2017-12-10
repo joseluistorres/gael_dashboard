@@ -1,17 +1,20 @@
 <div class="container">
-  <nav class="navbar navbar-dark bg-inverse">
-    <ul class="nav navbar-nav clearfix">
-      <li class="nav-item">
-        <button class="navbar-toggler hidden-sm-up nav-link" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
-          &#9776;
-        </button>
-      </li>
-    </ul>
-    <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-      <%= link_to "Rails bootstrap", root_path, class: 'navbar-brand' %>
-      <ul class="nav navbar-nav">
-        <%= render 'layouts/navigation_links' %>
+  <div class="header clearfix">
+    <nav>
+      <ul class="nav nav-pills float-right">
+        <% if current_user %>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Admin</a>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/sign_in">Sign In</a>
+          </li>
+        <% end %>
       </ul>
-    </div>
-  </nav>
+    </nav>
+    <h3 class="text-muted">Dashboard de Gael Torres</h3>
+  </div>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 </div>

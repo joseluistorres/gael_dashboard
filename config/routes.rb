@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  match 'test', to: 'welcome#test', via: :get
+  devise_for :users
   root 'welcome#index'
 end
