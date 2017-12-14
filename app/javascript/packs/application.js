@@ -6,14 +6,27 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
-
-console.log('Hello World from Webpacker')
-
 import React from 'react';
-//import { render } from 'react-dom';
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import timeBlocksApp from './reducers';
+import App from './components/app';
+// import App from './components/app.js';
 
-import Hello from './hello_react.jsx';
+let store = createStore(timeBlocksApp)
 
-console.log('Hello World from Webpacker 2')
+// render(
+//   <Provider store={store}>
+//     <App />
+//   </Provider>,
+//   document.getElementById('root')
+// )
+document.addEventListener('DOMContentLoaded', () => {
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.body.appendChild(document.createElement('div')),
+  )
+})
