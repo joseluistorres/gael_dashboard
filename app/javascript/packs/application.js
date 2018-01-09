@@ -11,17 +11,10 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import timeBlocksApp from './reducers';
-import App from './components/app';
-// import App from './components/app.js';
+import App from './components/App';
 
 let store = createStore(timeBlocksApp)
 
-// render(
-//   <Provider store={store}>
-//     <App />
-//   </Provider>,
-//   document.getElementById('root')
-// )
 document.addEventListener('DOMContentLoaded', () => {
   render(
     <Provider store={store}>

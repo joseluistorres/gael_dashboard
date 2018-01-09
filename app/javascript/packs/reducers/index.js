@@ -1,9 +1,15 @@
-import { combineReducers } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
 import time_blocks from './time_blocks'
-// import visibilityFilter from './visibilityFilter'
 
-const timeBlocksApp = combineReducers({
+const timeBlocksReducer = combineReducers({
   time_blocks
 })
 
-export default timeBlocksApp
+const createStoreWithMiddleware = applyMiddleware(
+  thunk
+)(createStore);
+
+export default function timeBlocksApp(initialState) {
+  return createStoreWithMiddleware(timeBlocksReducer, initialState);
+}
